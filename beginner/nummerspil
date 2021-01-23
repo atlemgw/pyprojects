@@ -1,0 +1,34 @@
+# import af modul
+import random
+
+# Tildeler variabel random vaerdi
+nummeret = random.randint(1, 101)
+
+# for loop
+for gaet in range(7):
+    
+    mit_gaet = int(input("Gæt et tal: "))
+
+    # statements
+    # hoejere > eller lavere <
+    if mit_gaet > nummeret:
+        print("Nummeret er lavere end dit gæt")
+
+    elif mit_gaet < nummeret:
+        print("Nummeret er højere end dit gæt")
+
+    # det samme == eller ikke det samme !=
+    elif mit_gaet != nummeret:
+        print("forkert")
+
+    elif mit_gaet == nummeret:
+        print("Godt gættet!")
+        break #<- breaker loop
+        
+
+# if statements naar vi er kommet ud af loopet
+if mit_gaet == nummeret:
+    print("Godt klaret! Nummeret var nemlig", str(nummeret))
+
+elif mit_gaet != nummeret:
+    print("Det var surt! Nummeret var", str(nummeret))
