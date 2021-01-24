@@ -1,0 +1,22 @@
+# Mad Lib
+
+# modul
+from random import choice
+
+# 5 substantiver, adjektiver og verber
+substantiver = ["pony", "gedebuk", "støvsuger", "håndbold", "bil"]
+adjektiver = ["sjov", "nedtrykt", "glad", "spændt", "sur"]
+verber = ["gik", "sang", "hoppede", "hilste", "spiste"]
+
+tekst = f"Der var en gang en {choice(substantiver)}, som var {choice(adjektiver)} hver gang den {choice(verber)}"
+print(tekst)
+
+print()
+
+print("Skriv i præsens")
+substantiv = input("Substantiv: ")
+adjektiv = input("Adjektiv: ")
+verbum = input("Verbum: ")
+
+tekst2 = f"Når {substantiv} {adjektiv} og {verbum} løber vi mod stranden"
+print(tekst2)
