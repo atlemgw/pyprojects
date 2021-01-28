@@ -1,0 +1,50 @@
+# Calculator by Atle Winther
+
+# Basic arithmetic functions
+def addition(a, b):
+    return a + b
+
+def substract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def division(a, b):
+    return a / b
+
+print("#" * 30)
+print("The Calculator".upper())
+print("by Your Name")
+print("#" * 30)
+print()
+print("Do you wish to:\nAdd(+)\nSubstract(-)\nMultiply(*)\nDivide(/)")
+
+choice = input("> ".lower())
+
+# Addition
+if choice == "add" or choice == "+":
+    print("Choose two numbers:")
+    num1 = float(input("Number 1: "))
+    num2 = float(input("Number 2: "))
+    print(str(num1) + " + " + str(num2) + " = " + str(addition(num1, num2)))
+
+# Substraction
+elif choice == "substract" or choice == "-":
+    num1 = float(input("Number 1: "))
+    num2 = float(input("Number 2: "))
+    print(str(num1) + " - " + str(num2) + " = " + str(substract(num1, num2)))
+
+elif choice == "multiply" or choice == "*":
+    num1 = float(input("Number 1: "))
+    num2 = float(input("Number 2: "))
+    print(str(num1) + " * " + str(num2) + " = " + str(multiply(num1, num2)))
+
+elif choice == "dividere" or choice == "/":
+    num1 = float(input("Number 1: "))
+    num2 = float(input("Number 2: "))
+    print(str(num1) + " / " + str(num2) + " = " + str(division(num1, num2)))
+
+else:
+    print("Wrong command.")
+
