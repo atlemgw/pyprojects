@@ -1,0 +1,95 @@
+# LOMMEREGNEREN
+
+# Moduler
+import time
+
+# Funktioner
+
+# plus
+def plus(a, b):
+    return a + b
+
+# minus
+def minus(a, b):
+    return a - b
+
+# gange
+def gange(a, b):
+    return a * b
+
+# division
+def division(a, b):
+    return a / b
+
+
+# Grafisk Brugerflade / GUI
+
+print("Lommeregneren".upper())
+print("-" * 50)
+print("-" * 50)
+print("af Atle Winther")
+print("-" * 50)
+print("loader...")
+time.sleep(2)
+
+
+while True:
+    print()
+    print("-" * 50)
+    print("Hvad ønsker du")
+    print("-" * 50)
+    print("+")
+    print("-")
+    print("*")
+    print("/")
+    print("-" * 50)
+    print("quit (q)")
+    print("info")
+    print("-" * 50)
+    
+
+    valg = input("> ")
+    print()
+    time.sleep(1)
+
+    if valg == "+":
+        print("Addition (+)")
+        tal1 = float(input("Tal1: "))
+        tal2 = float(input("Tal2: "))
+        print(str(tal1) + " + " + str(tal2) + " = " + str(plus(tal1, tal2)))
+        time.sleep(1)
+
+    elif valg == "-":
+        print("Subtration (-)")
+        tal1 = float(input("Tal1: "))
+        tal2 = float(input("Tal2: "))
+        print(str(tal1) + " - " + str(tal2) + " = " + str(minus(tal1, tal2)))
+        time.sleep(1)
+
+    elif valg == "*":
+        print("Multiplikation (*)")
+        tal1 = float(input("Tal1: "))
+        tal2 = float(input("Tal2: "))
+        print(str(tal1) + " * " + str(tal2) + " = " + str(gange(tal1, tal2)))
+        time.sleep(1)
+
+    elif valg == "/":
+        print("Division (/)")
+        tal1 = float(input("Tal1: "))
+        tal2 = float(input("Tal2: "))
+        print(str(tal1) + " / " + str(tal2) + " = " + str(division(tal1, tal2)))
+        time.sleep(1)
+
+    elif valg == "info":
+        print("Dette er en lommeregner, som er skabt i Python")
+        print("Du kan skrive to tal og udregne disse")
+        time.sleep(1)
+
+    elif valg == "q" or valg == "quit":
+        break
+
+    else:
+        print("Forkert indtast")
+        time.sleep(0.5)
+
+print("Programmet blev afsluttet")
