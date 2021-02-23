@@ -1,0 +1,143 @@
+# Pong
+
+import turtle
+
+# Vindue
+
+vindue = turtle.Screen()
+vindue.title("Pong")
+vindue.bgcolor("light blue")
+vindue.setup(width = 800, height = 600) # Kartesisk koordinatsystem: Y = -400, 400, X = 300, -300
+vindue.tracer(0) # <- opdater skærmen med speed 0
+
+
+# POINT
+# point_a og point_b
+point_a = 0
+point_b = 0
+
+
+# REKTANGLERNE
+
+# Firkant A
+firkant_a = turtle.Turtle()
+firkant_a.speed(0)
+firkant_a.shape("square")
+firkant_a.color("white")
+firkant_a.shapesize(stretch_wid = 5, stretch_len = 1)
+firkant_a.penup()
+firkant_a.goto(-350, 0) # 50 px bredde
+
+# Firkant B
+firkant_b = turtle.Turtle()
+firkant_b.speed(0)
+firkant_b.shape("square")
+firkant_b.color("white")
+firkant_b.shapesize(stretch_wid = 5, stretch_len = 1)
+firkant_b.penup()
+firkant_b.goto(350, 0) # 50 px bredde
+
+# BOLD
+bold = turtle.Turtle()
+bold.speed(0)
+bold.shape("square")
+bold.color("white")
+bold.penup()
+bold.goto(0, 0)
+bold.dx = .1 # <- ball rykker 0.1 px per opdatering. Kommer an på computer. Kan gå fra .1 - 2
+bold.dy = -.1 # <- ball rykker 0.1 px per opdatering
+
+# POINTSYSTEM
+
+# SKRIFT
+skrift = turtle.Turtle()
+skrift.speed(0)
+skrift.color("white")
+skrift.penup()
+skrift.hideturtle()
+skrift.goto(0, 260)
+skrift.write("Spiller A: 0 Spiller B: 0", align = "center", font = ("Courier", 24, "normal"))
+
+
+# FUNKTIONER
+
+# YCOR + / W
+def firkant_a_op():
+    y = firkant_a.ycor()
+    y += 20
+    firkant_a.sety(y)
+
+# YCOR - / S
+def firkant_a_ned():
+    y = firkant_a.ycor()
+    y -= 20
+    firkant_a.sety(y)
+
+# YCOR + / UP
+def firkant_b_op():
+    y = firkant_b.ycor()
+    y += 20
+    firkant_b.sety(y)
+
+# YCOR - / DOWN
+def firkant_b_ned():
+    y = firkant_b.ycor()
+    y -= 20
+    firkant_b.sety(y)
+    
+# KeyBoard Binding
+vindue.listen()
+vindue.onkeypress(firkant_a_op, "w")
+vindue.onkeypress(firkant_a_ned, "s")
+vindue.onkeypress(firkant_b_op, "Up")
+vindue.onkeypress(firkant_b_ned, "Down")
+
+
+
+# While Loop
+while True:
+    vindue.update()
+
+    # Flyt bold
+    bold.setx(bold.xcor() + bold.dx) # xcor + bouncing dx og dy
+    bold.sety(bold.ycor() + bold.dy)
+
+    # Kontrol af højde. Man ændre fart med dx og dy
+    if bold.ycor() > 290:
+        bold.sety(290)
+        bold.dy *= -1 # dx af y bounce med 1
+
+    if bold.ycor() < -290:
+        bold.sety(-290)
+        bold.dy *= -1 # dy af -y bounce med 1
+
+    # POINT
+    # Kontrol af bredde og point
+    if bold.xcor() > 390:
+        bold.goto(0, 0)
+        bold.dx *= -1 # ændre fart af bold
+        point_a += 1
+        skrift.clear()
+        skrift.write(f"Player A: {point_a} Player B: {point_b}", align = "center", font = ("Courier", 24, "normal"))
+
+
+    if bold.xcor() < -390:
+        bold.goto(0, 0)
+        bold.dx *= -1
+        point_b += 1
+        skrift.clear()
+        skrift.write(f"Player A: {point_a} Player B: {point_b}", align = "center", font = ("Courier", 24, "normal"))
+
+        
+    # KOLLISIONER AF KANT OG FIRKANTER  
+    if (bold.xcor() > 340 and bold.xcor() < 350) and (bold.ycor() < firkant_b.ycor() + 40 and bold.ycor() > firkant_b.ycor() -40 ):
+        bold.setx(340)
+        bold.dx *= -1
+
+    if (bold.xcor() < -340 and bold.xcor() > -350) and (bold.ycor() < firkant_a.ycor() + 40 and bold.ycor() > firkant_a.ycor() -40 ):
+        bold.setx(-340)
+        bold.dx *= -1
+
+   
+        
+
