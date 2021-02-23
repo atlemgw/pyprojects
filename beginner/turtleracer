@@ -1,0 +1,78 @@
+#   TURTLE RACE
+
+import turtle
+import random
+import time
+
+start = time.time()
+
+t = turtle
+
+# Racerbanen
+t.speed(14)
+t.penup()
+t.goto(-140, 140)
+
+# Loop af streger
+
+for i in range(1, 19):
+    t.write(i, align = "center")
+    t.right(90)
+    t.forward(10)
+    t.pendown()
+    t.forward(150)
+    t.penup()
+    t.backward(160)
+    t.left(90)
+    t.forward(20)
+
+
+# Racerne
+
+
+a = t.Turtle()
+a.color("red")
+a.shape("turtle")
+a.penup()
+a.goto(-160, 100)
+a.left(360)
+a.pendown()
+
+b = t.Turtle()
+b.color("blue")
+b.shape("turtle")
+b.penup()
+b.goto(-160, 70)
+b.right(360)
+b.pendown()
+
+c = t.Turtle()
+c.color("orange")
+c.shape("turtle")
+c.penup()
+c.goto(-160, 40)
+c.left(360)
+c.pendown()
+
+d = t.Turtle()
+d.color("green")
+d.shape("turtle")
+d.penup()
+d.goto(-160, 10)
+d.right(360)
+d.pendown()
+
+
+# Fart
+
+vinder = time.time()
+
+for fart in range(100):
+    a.forward(random.randint(1, 6))
+    b.forward(random.randint(1, 6))
+    c.forward(random.randint(1, 6))
+    d.forward(random.randint(1, 6))
+
+    
+print(f"Program: {time.time() - start}")
+print(f"Vinder: {time.time() - vinder}")
