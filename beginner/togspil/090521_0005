@@ -50,27 +50,18 @@ def start():
         print("En togkontrollør prikker dig på skulderen og siger vi er nået til endedestinationen, Hundige")
         print("\nTil din skræk kommer du i tanke om, at du ikke fik stemplet ind.")        
         
-        # hvis vi enten har "rejsekort" eller "karma" i listen
-        if "rejsekort" or "karma" in liste:
-            # hvis vi både har "rejsekort" og "karma" i listen
-            if "rejsekort" and "karma" in liste:
-                print("Det er din heldige dag. Kontrolløren kan godt se, at du er havnet i en uheldig situation og undlader at skrive en bøde")
-            # hvis vi har et rejsekort, får vi lov at tjekke ind
-            elif "rejsekort" in liste:
-                print("Du får heldigvis lov at tjekke ind")
-                start()
-            # hvis vi ikke har et rejsekort men karma
-            elif "karma" in liste:
-                print("Det er din heldige dag. Kontrolløren kan godt sætte sig i dit sted, og lader være med at udskrive en bøde.")
-                # vores karma er nu opbrugt
-                liste.remove("karma")
-                start()
+        # hvis vi har "karma"
+        if "karma" in liste:
+            print("Det er din heldige dag. Kontrolløren kan godt sætte sig i dit sted, og lader være med at udskrive en bøde.")
+            # vores karma er nu opbrugt
+            liste.remove("karma")
+            start()
         
-        # hvis hverken "rejsekort" eller "karma" er i listen stopper spillet
-        if "rejsekort" and "karma" != liste:
+        # hvis "karma" er i listen stopper spillet
+        elif "karma" != liste: #<- vi bruger for eksemplets skyld en !=(not equal) operator. 
             print("*"*30)
             print("Togkontrolløren er ligeglad og udskriver en bøde på 750 kroner.")
-            print("Du bliver bedt om at forlade toget. Togturen er slut")
+            print("Du bliver bedt om at forlade toget. Din togtur er slut")
             # spillets exit
             sys.exit(0)
             
