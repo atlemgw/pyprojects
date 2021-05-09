@@ -1,0 +1,103 @@
+# 090521_0002
+
+# moduler
+import sys
+
+# funktioner
+
+def setting():
+    # \n er tabulator som rykker vores streng 4 whitespaces frem
+    print("\tsetting")
+     # \n er en newline, som laver ny linje. Her laver vi to nye.
+    print("Dette er vores indledning, setting, som føre os videre til start-funktionen")
+    start()
+
+def start():
+    print("\n\n\tstart")
+    print("Dette er spillets start")
+    print("Vil du videre til stationen?")
+    
+    # input
+    valg = input("$\: ")
+    
+    if valg.lower() == "ja": #<- valg konverteres til lower-case letters
+        print("Du kommer videre til station-funktionen")
+        stationen()
+        
+    elif valg != "ja":
+        print("Du valgte at blive i start-funktionen")
+        start()
+    
+    
+def stationen():
+    print("\n\n\tstationen")
+    print("Så nåede vi til stationen")
+    
+
+
+# TEST - DENNE FUNKTION SLETTES
+def test_start():
+    print("Dine items: ", liste)
+    print("Vælg:\n")
+    print("Ønske: 1\nTrylledrik: 2\nSværd: 3")
+    # mine_valg er lige variabel i test_start
+    mine_valg = ['1', '2', '3'] # > 3: "Forkert indtast"
+    
+    # mine_valg bliver min_liste's argument, hvor vi kan vælge mellem 3 valg
+    #- indtaster du fx 4 vil min_liste ikke godkende dem i mine_valg og skrive "forkert indtast"
+    #-- indtaster du 'x' vil programmet slutte
+    valg = min_liste(mine_valg)
+    
+    if valg.lower() == '1':
+        
+        # listen har "ønske"
+        if "ønske" in liste:
+            test_start()
+        # listen indeholder ikke "ønske" og appender det
+        else:
+            liste.append("ønske")
+            test_start()
+     
+    
+    if valg.lower() == '2':
+        
+        if "trylledrik" in liste:
+            test_start()
+        else:
+            liste.append("trylledrik")
+            test_start()   
+            
+    if valg.lower() == '3':
+        
+        if "sværd" in liste:
+            test_start()
+        else:
+            liste.append("sværd")
+            test_start()
+    
+    
+
+    
+
+# Engine
+    
+# items
+def min_liste(mine_valg):
+    
+    valg = input("$\:\n")
+    
+    # Hvis vi allerede har valg dette valg returneres til valg = ['1', '2', '3']
+    if valg in mine_valg:
+        return valg
+    # hvis vi ønsker at gå ud af programmet
+    elif valg == 'x':
+        sys.exit(0) # modulet sys importeres
+    # hvis vi taster forkert
+    else:
+        print("Forkert indtast")
+        return min_liste(mine_valg)
+    
+    
+# start
+liste = [] # tom liste
+test_start()
