@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May  9 16:39:23 2021
+
+@author: atle
+"""
+
 # 090521_0002
 
 # moduler
@@ -41,6 +49,7 @@ def test_start():
     print("Vælg:\n")
     print("Ønske: 1\nTrylledrik: 2\nSværd: 3")
     # mine_valg er lige variabel i test_start
+    # VIGTIGT at vi navngiver variablen mine_valg jf. min_liste-funktionen
     mine_valg = ['1', '2', '3'] # > 3: "Forkert indtast"
     
     # mine_valg bliver min_liste's argument, hvor vi kan vælge mellem 3 valg
@@ -86,7 +95,7 @@ def min_liste(mine_valg):
     
     valg = input("$\:\n")
     
-    # Hvis vi allerede har valg dette valg returneres til valg = ['1', '2', '3']
+    # Hvis vi allerede har valgt dette valg returneres til valg = ['1', '2', '3']
     if valg in mine_valg:
         return valg
     # hvis vi ønsker at gå ud af programmet
