@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May  9
+
+@author: atle
+"""
+
+# 090521_0004
+
+# moduler
+import sys
+import random
+import time
+
+# funktioner
+# Her beskrives stemningen og spillets handling
+def setting():
+    print("Toget holder pludselig stille.")
+    time.sleep(1)
+    print("Efter noget tid skratter højtaleren\n\n")
+    time.sleep(0.5)
+    # historie-funktionen
+    historie("SKRAKTCJCK sKKraZHTTTxXS skRAtCHAkks\n\n")
+    time.sleep(1)
+    print("På grund af en omfattende signalfejl holder vi stille.\nVi venter på at vi får lov at fortsætte\n\n")
+    time.sleep(2)
+    # f-string formatering. Vi henter variablen "forsinkelser"
+    print(f"Efter {forsinkelser} minutter er der stadig ikke sket noget")
+    time.sleep(1)
+    print("Du opdager, at du har tabt din pengepung med rejsekort\n")
+    time.sleep(2)
+    start()
+
+def start():
+    print("\n\n\tstart")
+    print("Dette er spillets start")
+    print("Vil du videre til stationen?")
+    
+    # input
+    valg = input("$\: ")
+    
+    if valg.lower() == "ja": #<- valg konverteres til lower-case letters
+        print("Du kommer videre til station-funktionen")
+        stationen()
+        
+    elif valg != "ja":
+        print("Du valgte at blive i start-funktionen")
+        start()
+    
+    
+def stationen():
+    print("\n\n\tstationen")
+    print("Så nåede vi til stationen")
+    
+
+
+    
+
+# ENGINE
+    
+# skrivemaskine
+def historie(str):
+    for i in str:
+        x = random.uniform(0.09, 0.2) # tilfældig float mellem 0.09 og 0.2 ved indtast
+        y = random.uniform(0.6, 1.2) # ved newline
+        # skriv til disk
+        print(i, end = '', flush = True)
+        
+        # hvis der ikke er en newline, så fortsæt
+        if i != "\n":
+            time.sleep(x)
+        
+        # hvis der er en newline, så sov
+        else:
+            time.sleep(y)
+            
+# skrivemaskine - load
+def loader():
+    print("L O A D I N G\n")
+    loading_liste = random.choice(["...", ".........", "................."]) # tilfældigt valgt i listen
+    # for loop hvor variablen i går igennem loading_liste
+    for i in loading_liste:
+        # skriv til disk
+        print(i, end = '', flush = True)
+        time.sleep(.35)
+    time.sleep(2)
+    print("\nR.E.A.D.Y.\n")
+    time.sleep(1.2)
+    
+# items
+def min_liste(mine_valg):
+    
+    valg = input("$\:\n")
+    
+    # Hvis vi allerede har valgt dette valg returneres til fx valg = ['1', '2', '3']
+    if valg in mine_valg:
+        return valg
+    # hvis vi ønsker at gå ud af programmet
+    elif valg == 'x':
+        sys.exit(0) # modulet sys importeres
+    # hvis vi taster forkert
+    else:
+        print("Forkert indtast")
+        return min_liste(mine_valg)
+
+# Variabler
+msg = "En sen aften på vej hjem fra træning\nsidder du i toget mellem Hillerød og Hundige\nDu opdager at dit rejsekort er væk\nDu er netop kørt forbi Nordhavn Station\n\nMon du når hjem uden bøder og uden alt for mange forsinkelser...\n\n"
+forsinkelser = random.randint(1, 45) # <- bruges i setting-funktionen
+
+    
+# start
+liste = [] # tom liste
+loader()
+historie(msg)
+setting()
