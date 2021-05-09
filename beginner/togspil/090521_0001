@@ -1,0 +1,35 @@
+# 090521_0001
+
+# funktioner
+
+def setting():
+    # \n er tabulator som rykker vores streng 4 whitespaces frem
+    print("\tsetting")
+     # \n er en newline, som laver ny linje. Her laver vi to nye.
+    print("Dette er vores indledning, setting, som føre os videre til start-funktionen")
+    start()
+
+def start():
+    print("\n\n\tstart")
+    print("Dette er spillets start")
+    print("Vil du videre til stationen?")
+    
+    # input
+    valg = input("$\: ")
+    
+    if valg.lower() == "ja": #<- valg konverteres til lower-case letters
+        print("Du kommer videre til station-funktionen")
+        stationen()
+        
+    elif valg != "ja":
+        print("Du valgte at blive i start-funktionen")
+        start()
+    
+    
+def stationen():
+    print("\n\n\tstationen")
+    print("Så nåede vi til stationen")
+    
+    
+# start
+setting()
