@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May  9
+
+@author: atle
+"""
+
+# FÆRDIGT PROGRAM
+
+# 090521_0006
+
+# moduler
+import sys
+import random
+import time
+
+# funktioner
+# Her beskrives stemningen og spillets handling
+def setting():
+    print("Toget holder pludselig stille.")
+    time.sleep(1)
+    print("Efter noget tid skratter højtaleren\n\n")
+    time.sleep(0.5)
+    # historie-funktionen
+    historie("SKRAKTCJCK sKKraZHTTTxXS skRAtCHAkks\n\n")
+    time.sleep(1)
+    print("På grund af en omfattende signalfejl holder vi stille.\nVi venter på at vi får lov at fortsætte\n\n")
+    time.sleep(2)
+    # f-string formatering. Vi henter variablen "forsinkelser"
+    print(f"Efter {forsinkelser} minutter er der stadig ikke sket noget")
+    time.sleep(1)
+    print("Du opdager, at du har tabt din pengepung med rejsekort\n")
+    time.sleep(2)
+    start()
+
+def start():
+    #print(f"Dine items: {liste}".rjust(40))
+    print(liste)
+    print("\nHvad gør du?")
+    print("Lukker øjnene: 1")
+    print("Går en tur ned gennem kupeerne: 2")
+    print("Ser ned i din taske: 3")
+    
+    
+    mine_valg = ['1', '2', '3'] # > 4: "Forkert indtast"
+    valg = min_liste(mine_valg)
+    
+    # lukker øjenene
+    if valg == '1':
+        historie("\n\nzZZZzzZ ZZZZzZZZ ZZ  ZZZZ zzZZZZ\n")
+        print("En togkontrollør prikker dig på skulderen og siger vi er nået til endedestinationen, Hundige")
+        print("\nTil din skræk kommer du i tanke om, at du ikke fik stemplet ind.")        
+        
+        # hvis vi har "karma"
+        if "karma" in liste:
+            print("Det er din heldige dag. Kontrolløren kan godt sætte sig i dit sted, og lader være med at udskrive en bøde.")
+            # vores karma er nu opbrugt
+            liste.remove("karma")
+            start()
+        
+        # hvis "karma" er i listen stopper spillet
+        elif "karma" != liste: #<- vi bruger for eksemplets skyld en !=(not equal) operator. 
+            print("*"*30)
+            print("Togkontrolløren er ligeglad og udskriver en bøde på 750 kroner.")
+            print("Du bliver bedt om at forlade toget. Din togtur er slut")
+            # spillets exit
+            sys.exit(0)
+            
+        
+    # går en tur ned gennem kupeerne
+    elif valg == '2':
+        # beskrivelse af stemning og setting
+        print("Dine medpassagerer sidder roligt og afventer situationen")
+        print("Nogle sidder med deres telefoner, andre med avisen, og andre kigger trætte ud af vinduerne")
+        print("En mand spørger om du kan låne ham en 5'er til en kop kaffe")
+        # Her leger vi lidt med valg-variablen. I stedet for at trykke på tal kan skrive i sit input
+        mine_valg = ["JA".lower(), "NEJ".lower()] # > 4: "Forkert indtast"
+        valg = min_liste(mine_valg)
+        
+        if valg == "ja":
+            print("Fedt! - Det er god stil at hjælpe hinanden.\n")
+            # hvis listen ikke indeholder "karma"
+            if "karma" != liste:
+                liste.append("karma")
+        # hvis listen indeholder "karma"    
+        else:
+            print("Du fortsætter rundt i kupeerne")
+            
+        # når if og else er kontrolleret fortsætter programmet     
+        # ny setting
+        print("Du ser en pengepung ligge på gulvet - måske er det din\nØnsker du at tage det op?")
+        print("Tag det op: 1")
+        print("Lad det ligge: 2")
+        
+        # mine_valg skifter til tal
+        mine_valg = ['1', '2'] # > 3: "Forkert indtast"
+        valg = min_liste(mine_valg)
+           
+        # hvis du tager pengepungen
+        if valg == '1':
+            # penge-variabel, f-formatering og reducering af decimaler
+            print(f"Du ser at det er din pung med {penge:.2f} kroner og rejsekortet i. Du tager det op.")
+            print("i samme bevægelse begynder toget at starte")
+            print("LOADER")
+            items = ["rejsekort", "penge"]
+            liste.extend(items)
+            time.sleep(2)
+            station() # videre til station
+        
+        # hvis du ikke tager pengepungen
+        elif valg == '2':
+            print("Du lader det ligge")
+            # tilbage til start
+            start()
+    
+    # hvis vi vil se i vores taske        
+    elif valg == '3':
+        print(f"Din taske indeholder: {liste}".center(20)) #<- centrering af print-funktionen(blot som eksempel)
+        if "rejsekort" in liste:
+            print("Du har fundet dit rejsekort - husk at tjekke ind.")
+        else:
+            print("Du mangler dit rejsekort...")
+        # tilbage til start    
+        start()
+    
+    
+def station():
+    # tid er lokal variabel
+    tid = random.randint(0, 45)
+    
+    # setting
+    historie("\nToget begynder at bevæge sig igen\n\n")
+    time.sleep(2)
+    print(liste)
+    # hent linje_x
+    print(f"STATION: {linje_x}".upper())
+    print("\nEn kontrollør kommer ind i kupeen")
+    print("Hvad gør du?")
+    print("Sidder stille og venter: 1")
+    print("Går ud på stationen og tjekker ind: 2")
+    
+    mine_valg = ['1', '2'] # > 3: "Forkert indtast"
+    valg = min_liste(mine_valg)
+    
+    # hvis vi sidder stille
+    if valg == '1':
+        print("\nKontrolløren spørger om en billet")
+        time.sleep(0.8)
+        print("Han kan se at du ikke er tjekket ind og giver din en bøde på 750 kr")
+        
+        # hvis der er er 750.0 kr i penge-variablen
+        if penge > 750.0:
+            print(f"Du betaler bøden og har {penge - 750} kroner tilbage.")
+        # hvis der ikke er over 750.0 kr i penge-variablen
+        else:
+            print("Ørgerligt! Du har ikke nok penge til at betale bøden")
+        
+    # hvis vi vælger at gå ud på stationen og stemple    
+    elif valg == '2':
+        print("Du løber af sted. Mon du når at tjekke ind...")
+        time.sleep(tid)
+        
+        # er tiden over 30 sekunder når du det
+        if tid > 30:
+            print("\nDu nåede tilbage i toget.")
+        
+        # er tiden under 30 sekunder kører toget
+        else:
+            print("Du nåede det ikke og ser toddørene lukke\nToget kører afsted uden dig.")
+            print(f"Heldigvis er der kun {tid} minutter til næste tog...") #<- gengrug variablen "tid"
+    
+
+# ENGINE
+    
+# skrivemaskine
+def historie(str):
+    for i in str:
+        x = random.uniform(0.09, 0.2) # tilfældig float mellem 0.09 og 0.2 ved indtast
+        y = random.uniform(0.6, 1.2) # ved newline
+        # skriv til disk
+        print(i, end = '', flush = True)
+        
+        # hvis der ikke er en newline, så fortsæt
+        if i != "\n":
+            time.sleep(x)
+        
+        # hvis der er en newline, så sov
+        else:
+            time.sleep(y)
+            
+# skrivemaskine - load
+def loader():
+    print("L O A D I N G\n")
+    loading_liste = random.choice(["...", ".........", "................."]) # tilfældigt valgt i listen
+    # for loop hvor variablen i går igennem loading_liste
+    for i in loading_liste:
+        # skriv til disk
+        print(i, end = '', flush = True)
+        time.sleep(.35)
+    time.sleep(2)
+    print("\nR.E.A.D.Y.\n")
+    time.sleep(1.2)
+    
+# items
+def min_liste(mine_valg):
+    
+    valg = input("$\:\n")
+    
+    # Hvis vi allerede har valgt dette valg returneres til fx valg = ['1', '2', '3']
+    if valg in mine_valg:
+        return valg
+    # hvis vi ønsker at gå ud af programmet
+    elif valg == 'x':
+        sys.exit(0) # modulet sys importeres
+    # hvis vi taster forkert
+    else:
+        print("Forkert indtast")
+        return min_liste(mine_valg)
+
+# Variabler
+# indsæt ved stationen-funktion og ved msg-variablen
+linje_x = random.choice(["Holte", "Hellerup", "Svanemøllen", "Østerport","Nørreport", "Vesterport", "København H", "Ny Ellebjerg"])
+# msg-variablen laves om til f-formatering og indeholder en tilfældig station som udskifter den statiske "Nordhavn"
+msg = f"En sen aften på vej hjem fra træning\nsidder du i toget mellem Hillerød og Hundige\nDu opdager at dit rejsekort er væk\nDu er netop kørt forbi {linje_x} Station\n\nMon du når hjem uden bøder og uden alt for mange forsinkelser...\n\n"
+forsinkelser = random.randint(1, 45) # <- bruges i setting-funktionen
+penge = random.uniform(0.0, 1000.0) # bruges i start-funktionen, sektion 2.
+
+
+    
+# start
+liste = [] # tom liste
+loader()
+historie(msg)
+setting()
