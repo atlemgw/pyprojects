@@ -1,0 +1,11 @@
+import base64
+
+indkodning = base64.b64encode(b"Dette er min hemmelige besked")
+print(indkodning)
+
+afkodning = base64.b64decode(indkodning)
+print(afkodning)
+
+def indkodning():
+    indkodning = base64.b64encode(b"str")
+    print(indkodning)
